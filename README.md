@@ -100,6 +100,67 @@
 
 ---
 
+### 07 — Ensemble Price Prediction Model (LSTM + XGBoost + Random Forest)
+> Combining LSTM, XGBoost and Random Forest for multi-asset price forecasting.
+
+- 20 technical features per asset: RSI, MACD, Bollinger Bands, momentum, volume ratio
+- Three independent models trained on identical data, each learning different patterns
+- Weighted ensemble — models with lower MAE receive higher weight automatically
+- Directional Accuracy as primary metric — measures if the model predicts up/down correctly
+
+**Results (Test Set — 60 days):**
+
+| Asset | Best Model | MAPE | Directional Accuracy |
+|---|---|---|---|
+| BTC | LSTM | 4.3% | **59.0%** ✅ |
+| ETH | RF | 3.7% | 48.7% |
+| AAPL | XGBoost | 1.6% | 56.4% ✅ |
+| EUR/USD | LSTM / RF | 0.6% | 53.8% |
+
+> Directional Accuracy above 55% is considered actionable for trading signals.
+> BTC (59%) and AAPL (56.4%) crossed this threshold.
+
+**Tech stack:** Python · TensorFlow/Keras · XGBoost · Scikit-learn · Yahoo Finance API
+
+---
+
+### 08 — RTH Gap Fill Statistics (NQ & ES Futures)
+> Statistical analysis of Regular Trading Hours gaps on Nasdaq 100 and S&P 500 futures over 5 years.
+
+- Identifies all bullish and bearish RTH gaps (open vs previous close)
+- Calculates fill rates at 25%, 50%, 75% and 100% on the same day
+- Measures 50% fill rate in the first hour of trading (09:30–10:30 ET)
+- Tracks average days to full gap close across 5 years
+- Comparative dashboard: NQ vs ES side by side
+
+**Key Results (NQ):**
+
+| Gap Type | Fill 25% | Fill 50% | Fill 100% | First Hour 50% |
+|---|---|---|---|---|
+| Bullish | 96.1% | 92.9% | 86.9% | 70.8% |
+| Bearish | 97.2% | 94.5% | 89.4% | 77.9% |
+
+> Fill rate above 70% = strong statistical edge for intraday trading.
+
+**Tech stack:** Python · Pandas · Matplotlib · Yahoo Finance API
+
+---
+
+### 09 — Order Flow Analysis (NQ, ES, BTC, ETH)
+> Institutional-grade order flow analysis combining VWAP, Volume Profile and Cumulative Delta.
+
+- **VWAP** with daily reset and ±1σ / ±2σ standard deviation bands
+- **Volume Profile** — POC, VAH, VAL with 70% Value Area calculation
+- **Rolling Volume Profile** — 20-day window showing how key levels evolve
+- **Cumulative Delta** — buy vs sell volume pressure estimation
+- **Divergence detection** — price/delta divergence as reversal signal
+- Combined dashboard: Price + VWAP + Volume Profile + Delta in one view
+
+**Assets:** NQ · ES · BTC · ETH
+**Tech stack:** Python · Pandas · NumPy · Matplotlib · Yahoo Finance API
+
+---
+
 ## 🛠️ Tech Stack
 
 | Area | Tools |
